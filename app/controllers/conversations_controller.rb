@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_filter :load_board
   # GET /conversations
   # GET /conversations.json
   def index
@@ -6,7 +7,7 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @conversations }
+      format.xml { render :xml => @conversations }
     end
   end
 
@@ -78,6 +79,17 @@ class ConversationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to conversations_url }
       format.json { head :ok }
+    end
+  end
+  private
+  
+  def load_board
+    if Board.exists?(params[:board_id])
+      @board = Board.find(params[:board_id]);
+    end
+              
+    unless @board
+      redirect_to(boards_path, :notice =>"Please specify a valid board")
     end
   end
 end

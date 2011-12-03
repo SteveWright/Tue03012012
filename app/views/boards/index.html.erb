@@ -1,21 +1,14 @@
-<h1>Listing boards</h1>
+<h1 id="page_title">Listing Foals</h1>
+<p id="notice"><%= notice %></p>
 
 <table>
   <tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th align="left">Title</th>
   </tr>
 
 <% @boards.each do |board| %>
   <tr>
-    <td><%= board.id %></td>
-    <td><%= board.title %></td>
-    <td><%= link_to 'Show', board %></td>
-    <td><%= link_to 'Edit', edit_board_path(board) %></td>
-    <td><%= link_to 'Destroy', board, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to board.title %></td>
   </tr>
 <% end %>
 </table>
