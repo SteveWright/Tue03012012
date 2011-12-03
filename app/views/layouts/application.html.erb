@@ -2,12 +2,14 @@
 <html>
 <head>
   <title>The Horses Mouth</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="nav">
+  <div id="wrapper">
+    <div id="top_nav">
+      <h1><%= image_tag("HossHead.png", :size => '50x50') %> The Horses Head
   <% if current_user %>
   	<%= link_to "Edit Profile", edit_user_path(current_user.id) %>
   	<%= link_to "Logout", :logout %>
@@ -15,9 +17,16 @@
     <%= link_to "Register", new_user_path %>
     <%= link_to "Login", :login %>
     <% end %>
+    <div class="bclear"></div>
+    </div>
+    
+  <div id ="content">
+    <%= yield %>
   </div>
 
-<%= yield %>
-
+  <div id ="footer">
+  
+  </div>
+  
 </body>
 </html>
