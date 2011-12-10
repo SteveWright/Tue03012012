@@ -15,7 +15,7 @@
     <td><%= user_session.password %></td>
     <td><%= link_to 'Show', user_session %></td>
     <td><%= link_to 'Edit', edit_user_session_path(user_session) %></td>
-    <td><%= link_to 'Destroy', user_session, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', user_session, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

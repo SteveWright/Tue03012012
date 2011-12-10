@@ -3,12 +3,20 @@
 
 <table>
   <tr>
-    <th align="left">Title</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @boards.each do |board| %>
   <tr>
-    <td><%= link_to board.title %></td>
+    <td><%= board.id %></td>
+    <td><%= board.title %></td>
+    <td><%= link_to 'Show', board %></td>
+    <td><%= link_to 'Edit', edit_board_path(board) %></td>
+    <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

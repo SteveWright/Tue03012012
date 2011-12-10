@@ -1,5 +1,8 @@
-<h1>New conversation</h1>
+<h1 id="page_title">New Comment</h1>
+
+<%= link_to @board.name, @board %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', conversations_path %>
+<%= link_to @board.name, @board %>
+

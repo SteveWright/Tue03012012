@@ -1,3 +1,4 @@
+<h1 id="page_title"><%= @user.username %>'s Profile</h1>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -10,21 +11,5 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Crypted password:</b>
-  <%= @user.crypted_password %>
-</p>
-
-<p>
-  <b>Password salt:</b>
-  <%= @user.password_salt %>
-</p>
-
-<p>
-  <b>Persistence token:</b>
-  <%= @user.persistence_token %>
-</p>
-
-
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'The Horses Mouth', users_path %>

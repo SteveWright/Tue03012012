@@ -1,18 +1,15 @@
-<h1 is="page_title"><%= @board.title %></h1>
 <p id="notice"><%= notice %></p>
-<%= link_to 'Rails Boards', boards_path %> &gt; <%= link_to @board.title, @board %> <br />
-<%= link_to 'Post New Message', new_board_conversation_url(@board) %>
+
+<h1><%= @board.title %></h1>
 
 
-<p>
-  <b>Id:</b>
-  <%= @board.id %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @board.title %>
-</p>
+<table>
+<% @board.conversations.each do |conversation| %>
+  <tr>
+    <td><%= link_to conversation.title, conversation %></td>
+  </tr>
+<% end %>
+</table>
 
 
 <%= link_to 'Edit', edit_board_path(@board) %> |
