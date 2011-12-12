@@ -5,7 +5,6 @@
     <th>Id</th>
     <th>Title</th>
     <th>Board</th>
-    <th>User</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,10 +15,9 @@
     <td><%= conversation.id %></td>
     <td><%= conversation.title %></td>
     <td><%= conversation.board_id %></td>
-    <td><%= conversation.user_id %></td>
     <td><%= link_to 'Show', conversation %></td>
     <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>
-    <td><%= link_to 'Destroy', conversation, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', conversation, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

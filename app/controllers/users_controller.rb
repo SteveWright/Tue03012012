@@ -14,57 +14,48 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    
-    respond_to do |format|
-    	format.html
-    	format.xml { render :xml => @user }
-    end
   end
 
   # GET /users/new
   # GET /users/new.json
   def new
     @user = User.new
-
-    respond_to do |format|
-    	format.html
-    	format.xml { render :xml => @user }   
+    
+    if current_user
+    	redirect_to(homepage_url, :notice => 'Already Registered' )
     end
   end
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+  	is_user
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user_session = UserSession.new(params[:user])
     
     respond_to do |format|
-    	if @user.save
-        format.html { redirect_to(:users, :notice => 'Registration successfull.') }
-        format.xml { render :xml => @user, :status => :created, :location => @user }
-      else
+    	if @user.save && @user_session.save
+        format.html { redirect_to(homepage_url, :notice => 'Registration successfull.') }
+        else
         format.html { render :action => "new" }
-        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+        end
     end
   end
 
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
-    respond_to do |format|
+  	is_user
+   
+  	respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,4 +69,17 @@ class UsersController < ApplicationController
       format.xml { head :ok }
     end
   end
+  
+  private
+  
+  def is_user
+  	if User.exists?(params[:id])
+  		@user = User.find(params[:id]);
+  		if !current_user || current_user.id != @user.id
+  			redirect_to(homepage_url, :notice => "You do not have access to that page")
+  		end
+  	  else
+  	  	redirect_to(homepage_url, :notice => "You do not have access to that page")
+  	  end
+  end	  
 end

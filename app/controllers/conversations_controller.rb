@@ -7,9 +7,11 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml { render :xml => @conversations }
+      format.xml { render :xml => @conversation }
     end
   end
+ 
+  
 
   # GET /conversations/1
   # GET /conversations/1.json
@@ -30,23 +32,7 @@ class ConversationsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml { render :xml => @conversation }
     end
-  end
-  
-  def reply
-    @conversation = load_parent
-    @comment = @conversation.comments.build
-
-    respond_to do |format|
-      format.html { render :action => "new" }# new.html.erb
-      format.xml { render :xml => @conversation }
-    end
-  end
-
-  # GET /conversations/1/edit
-  def edit
-    @conversation = Conversation.find(params[:id])
   end
 
   # POST /conversations
@@ -54,11 +40,54 @@ class ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(params[:conversation])
     @comment = @conversation.comments.build(params[:comment])
+    @conversation.user_id = @comment.user_id = current_user.id
     @conversation.board = @board
+      
+  respond_to do |format|
+  	if current_user && @conversation.save
+  		format.html { redirect_to(board_path(@board), :notice => 'Your Post was created') }
+  	else
+  		format.html { render :acion => "new" }
+  	end
+  end
+end
+ 
+  def reply
+    @conversation = Conversation.find(params[:id])
+    @comment = @conversation.comments.build
+
+    respond_to do |format|
+      format.html #reply.html.erb
+    end
+  end
   
-  @conversation = Conversation.new(params[:conversation])
-    @comment = @conversation.comments.build(params[:comment])
-    @conversation.board = @board
+  def save_reply
+    if !current_user
+      redirect_to(:login, :notice =>"Please login before posting")
+      return 1;
+    end
+    
+    if Conversation.exists?(params[:id])
+      @conversation = Conversation.find(params[:id])
+      @comment = @conversation.comments.build(params[:comment])
+      @comment.user_id = current_user.id
+    else
+      redirect_to(boards_path, :notice =>"Please specify a valid board")
+    end
+
+    respond_to do |format|
+      if current_user && @comment.save
+        format.html { redirect_to(board_path(@board), :notice => 'Your reply was posted') }
+      else
+        format.html { render :action => "new" }
+      end
+    end
+  end
+  
+  
+  # GET /conversations/1/edit
+  def edit
+    @conversation = Conversation.find(params[:id])
   end
 
   # PUT /conversations/1
@@ -88,14 +117,16 @@ class ConversationsController < ApplicationController
       format.xml { head :ok }
     end
   end
-  
+
   private
   
   def load_board
+  	if Board.exists?(params[:board_id])
     @board = Board.find(params[:board_id]);
-                 
+    end
+    
     unless @board
-   
+	  redirect_to(boards_path, :notice => "Please specify a valid Board")   
     end
   end
   

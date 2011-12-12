@@ -76,7 +76,7 @@ class BoardsController < ApplicationController
     @board.destroy
 
     respond_to do |format|
-      format.html { redirect_to boards_url }
+      format.html { redirect_to homepage_url }
       format.xml { head :ok }
     end
   end

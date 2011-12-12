@@ -1,19 +1,22 @@
 /* Layout Styles */
 #wrapper {
-    width: 750px;
+	background: #72CCF2;
+    width: 100%;
     margin: 25px auto;
-    border: 1px solid black;
+    border: 3px solid black;
 }
 
 #top_nav {
     padding: 5px;
     text-align: right;
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid black;
 }
 
 #top_nav h1 {
     display:inline;
     float: left;
+    color: white;
+    font-size: 32pt;
 }
 
 #top_nav h1 img {
@@ -26,7 +29,7 @@
 }
 
 #content h1 {
-    font-size: 14pt;
+    font-size: 22pt;
 }
 
 #content h1#page_title {

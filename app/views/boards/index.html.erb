@@ -1,10 +1,9 @@
-<h1 id="page_title">Listing Foals</h1>
+<h1 id="page_title">Listing Boards</h1>
 <p id="notice"><%= notice %></p>
 
 <table>
   <tr>
-    <th>Id</th>
-    <th>Name</th>
+    <th align="left">Title</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,8 +11,7 @@
 
 <% @boards.each do |board| %>
   <tr>
-    <td><%= board.id %></td>
-    <td><%= board.title %></td>
+    <td><%= link_to board.title, board %></td>
     <td><%= link_to 'Show', board %></td>
     <td><%= link_to 'Edit', edit_board_path(board) %></td>
     <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -24,3 +22,4 @@
 <br />
 
 <%= link_to 'New Board', new_board_path %>
+<% link_to 'Homepage', homepage_url %>
