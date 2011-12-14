@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
 
     if @user_session.save
-    	redirect_to(:users, :notice => 'Login Successful') 
+    	redirect_to(homepage_url, :notice => 'Login Successful') 
     else
         format.html { render :action => "new" }
         format.xml { render :xml => @user_session.errors, :status => :unprocessable_entity }
