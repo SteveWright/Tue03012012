@@ -1,1 +1,18 @@
-Login appears to be functioning, about to attempt to add in a home page, about and help.
+Login is working
+
+Basic function of forum, add boards, conversations & replies functioning correctly.
+
+Added pagination for boards lists.
+
+TODO
+
+Pagination for Conversations
+Pagination for replies
+
+Admin functions for create/destroy
+
+Search with Sunspot?
+
+Display with jQuery
+
+Tidy up CSS
