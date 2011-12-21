@@ -1,9 +1,10 @@
 class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.xml
+  
   def index
     @boards = Board.all
-
+	@boards = Board.paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @boards }
@@ -80,4 +81,5 @@ class BoardsController < ApplicationController
       format.xml { head :ok }
     end
   end
+  
 end

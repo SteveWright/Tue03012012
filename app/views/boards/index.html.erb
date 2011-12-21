@@ -16,6 +16,7 @@
     <td><%= link_to 'Edit', edit_board_path(board) %></td>
     
   </tr>
+
 <% end %>
 </table>
 
@@ -23,3 +24,4 @@
 
 <%= link_to 'New Board', new_board_path %>
 <% link_to 'Homepage', homepage_url %>
+<%= will_paginate @boards %>
