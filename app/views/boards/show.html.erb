@@ -8,7 +8,7 @@
     <th>Last Reply</th>
     <th>Number of Replies</th>
   </tr>
-    
+  
 <% @board.conversations.each do |conversation| %>
   <tr>
     <td><%= link_to conversation.title, board_conversation_path(:board_id => @board, :id => conversation) %><br />
@@ -19,15 +19,18 @@
       by <%= conversation.comments.find(:last).user.username %>
     </td>
     <td>
-      <%= conversation.comments.count - 1%>
+      <%= conversation.comments.count - 1 %>
     </td>
   </tr>
+ 
+<% paginate @conversations %>
+
 <% end %>
 </table>
 
 
-<%= link_to 'Post New Message', new_board_conversation_url(@board) %> |
 
+<%= link_to 'Post New Message', new_board_conversation_url(@board) %> |
 <%= link_to 'The Horses Mouth', homepage_url %> |
 <%= link_to 'Edit', edit_board_path(@board) %> |
 <%= link_to 'Back', boards_path %>

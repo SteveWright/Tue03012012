@@ -4,8 +4,9 @@ class BoardsController < ApplicationController
   
   def index
     @boards = Board.all
-	@boards = Board.paginate(:per_page => 5, :page => params[:page])
-    respond_to do |format|
+    @boards = Board.order("title").page(params[:page]).per(5)
+        
+	respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @boards }
     end
@@ -15,7 +16,8 @@ class BoardsController < ApplicationController
   # GET /boards/1.xml
   def show
     @board = Board.find(params[:id])
-
+    @boards = Board.order("title").page(params[:page]).per(5)
+    @conversations = Conversation.page(params[:page]).per(5)        
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @board }

@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
   # GET /comments.json
   def index
     @comments = Comment.all
-
+    @comments = Comment.page(params[:page]).per(5)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml { render :xml => @comments }
@@ -14,7 +15,8 @@ class CommentsController < ApplicationController
   # GET /comments/1.json
   def show
     @comment = Comment.find(params[:id])
-
+    @comments = Comment.page(params[:page]).per(5)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @comment }

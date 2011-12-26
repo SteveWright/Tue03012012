@@ -1,13 +1,15 @@
 class ConversationsController < ApplicationController
   before_filter :load_board
+  
   # GET /conversations
   # GET /conversations.json
+  
   def index
     @conversations = Conversation.all
-
+        
     respond_to do |format|
       format.html # index.html.erb
-      format.xml { render :xml => @conversation }
+      #format.xml { render :xml => @conversation }
     end
   end
  
@@ -17,10 +19,10 @@ class ConversationsController < ApplicationController
   # GET /conversations/1.json
   def show
     @conversation = Conversation.find(params[:id])
-
+        
     respond_to do |format|
       format.html # show.html.erb
-      format.xml { render :xml => @conversation }
+      #format.xml { render :xml => @conversation }
     end
   end
 

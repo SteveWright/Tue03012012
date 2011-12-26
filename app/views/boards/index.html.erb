@@ -20,8 +20,8 @@
 <% end %>
 </table>
 
+<%= paginate @boards%>
 <br />
 
-<%= link_to 'New Board', new_board_path %>
-<% link_to 'Homepage', homepage_url %>
-<%= will_paginate @boards %>
+<%= link_to 'New Board', new_board_path %> |
+<%= link_to 'Homepage', homepage_url %>

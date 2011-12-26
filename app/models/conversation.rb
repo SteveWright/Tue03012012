@@ -5,4 +5,5 @@ class Conversation < ActiveRecord::Base
 	validates_presence_of :title
 	validates_length_of :title, :maximum=>50
 	#validates_presence_of :body
+	#validates_length_of :body, :minimum=>10
 end
