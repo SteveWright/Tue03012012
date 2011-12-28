@@ -1,6 +1,6 @@
 <h1 id="page_title"><%= @board.title %></h1>
 <p id="notice"><%= notice %></p>
-<% link_to 'The Horses Mouth', boards_path %> &gt; <%= link_to @board.title, @board %> <br />
+
 
 <table>
   <tr>
@@ -9,24 +9,28 @@
     <th>Number of Replies</th>
   </tr>
   
-<% @board.conversations.each do |conversation| %>
+<% @conversations.each do |conversation| %>
   <tr>
-    <td><%= link_to conversation.title, board_conversation_path(:board_id => @board, :id => conversation) %><br />
-    <%= conversation.user.username %>
+    <td><%= link_to conversation.title, board_conversation_path(:board_id => @board, :id => conversation) %>
+    
     </td>
     <td>
-      <%= conversation.comments.find(:last).created_at %><br />
-      by <%= conversation.comments.find(:last).user.username %>
+      <%= conversation.comments.find(:last).created_at %>
+      by                 <%= conversation.comments.find(:last).user.username %>
     </td>
     <td>
       <%= conversation.comments.count - 1 %>
     </td>
   </tr>
- 
-<% paginate @conversations %>
 
 <% end %>
 </table>
+<br/>
+
+<%= paginate @conversations %>
+<br/>
+
+
 
 
 

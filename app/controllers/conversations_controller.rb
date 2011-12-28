@@ -19,7 +19,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1.json
   def show
     @conversation = Conversation.find(params[:id])
-        
+    @conversations = @board.conversations.page(params[:page]).per(2)        
     respond_to do |format|
       format.html # show.html.erb
       #format.xml { render :xml => @conversation }

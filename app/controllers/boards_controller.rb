@@ -16,8 +16,7 @@ class BoardsController < ApplicationController
   # GET /boards/1.xml
   def show
     @board = Board.find(params[:id])
-    @boards = Board.order("title").page(params[:page]).per(5)
-    @conversations = Conversation.page(params[:page]).per(5)        
+    @conversations = Board.find(params[:id]).conversations.order(:title).page(params[:page]).per(5)        
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @board }
