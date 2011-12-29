@@ -5,10 +5,10 @@
   <tr>
     <th colspan="2"><%= @conversation.title %></th>
   </tr>
-<% @conversation.comments.each do |comment| %>
+<% @comments.each do |comment| %>
   <tr>
-    <td><%= link_to comment.user.username, comment.user %><br />
-    Posted At <br />
+    <td><%= link_to comment.user.username, comment.user %>
+          Posted At 
     <%= comment.created_at %>
     </td>
     <td>
@@ -18,10 +18,10 @@
 <% end %>
 </table>
 
+<%= paginate @comments %>
 
-
-<%= link_to 'Reply', reply_board_conversation_url(:board_id=>@board, :id=>@conversation)%> |
-<%= link_to @conversation.board.title, @conversation.board%> |
-<%= link_to 'The Horses Mouth', homepage_url %>
+<%= link_to 'Reply', reply_board_conversation_url(:board_id=>@board, :id=>@conversation) %> |
+<%= link_to @conversation.board.title, @conversation.board %> |
+<%= link_to 'The Horses Mouth', homepage_url %> | <%= link_to 'Back', @conversation.board %>
 
 
