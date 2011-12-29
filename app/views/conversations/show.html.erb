@@ -10,9 +10,7 @@
     <td><%= link_to comment.user.username, comment.user %>
           Posted At 
     <%= comment.created_at %>
-    </td>
-    <td>
-      <p><%= comment.body %></p>
+    <%= comment.body %>
     </td>
   </tr>
 <% end %>
