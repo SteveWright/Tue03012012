@@ -18,3 +18,9 @@ Display with jQuery
 Integrate flickr API
 
 Tidy up CSS
+
+rake db:populate is functioning, although need to check that conversations and comments are being populated correctly
+
+Added jQuery-rails gem
+Added jQuery into app/assets/javascript
+
