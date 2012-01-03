@@ -1,4 +1,6 @@
 LoginApp::Application.routes.draw do
+  resources :votes
+
     resources :boards do
   	  resources :conversations
   end
